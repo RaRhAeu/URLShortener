@@ -1,18 +1,29 @@
 ============
 URLShortener
 ============
-----------------------------------------------------
-Yet another url-shortener API made with python Flask
-----------------------------------------------------
+-----------------------------
+Yet another url-shortener API
+-----------------------------
 Introduction
 ------------
 This is simple url-shortener api, based on python and depends on the following major componets:
- - Flask - web application microframework for Python
- - PostgreSQL - Relational database managment system
+ - Flask - Web application microframework for Python
+ - PostgreSQL - Database
  - SQLAlchemy - ORM framework
  - Redis - Caching
- - Celery - for background tasks
- - Pytest - unit test framework
+ - Celery - Background tasks
+ - Pytest - Unit test framework
+
+.....
+About
+.....
+Although the idea is quite easy, this project is aimed at the following goals:
+ - Getting basic knowledge about Flask
+ - Proper project structure and setup
+ - Implementing third party services such as Caching (Redis) and background tasks (Celery)
+ - Securing API the proper way, without violating the REST principles (token based auth)
+ - Writing some unit test with pytest framework
+ - Containerizing app with docker and configuring for production with gunicorn
 
 ..................
 Getting the source
@@ -49,3 +60,14 @@ Running the server
 ``$ pipenv shell``
 
 ``$ python manage.py run``
+
+TODOS:
+......
+ - Create CRUD API for managing urls
+ - Create CRUD API for managing users
+ - Add user authentication and authorization (Flask-JWT + Bcrypt)
+ - Implement CORS policy
+ - Create caching mechanism
+ - Implement Celery worker
+ - Write tests
+ - Containerize app with Docker

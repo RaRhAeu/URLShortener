@@ -1,20 +1,15 @@
 from flask_sqlalchemy import SQLAlchemy
 
-"""
+
 def query(cls, **kwargs):
     q = db.session.query(cls)
-    if kw:
-        q = q.filter_by(**kw)
+    if kwargs:
+        q = q.filter_by(**kwargs)
     return q
 
 
-# not needed i guess...
 def get(cls, **kw):
     return cls.query(**kw).first() or None
-
-
-
-"""
 
 
 def exists(cls, **kwargs):
@@ -24,4 +19,6 @@ def exists(cls, **kwargs):
 db = SQLAlchemy()
 
 # db = SQLAlchemy(session_options=dict(expire_on_commit=False))
+db.Model.query = classmethod(query)
+db.Model.get = classmethod(get)
 db.Model.exists = classmethod(exists)
