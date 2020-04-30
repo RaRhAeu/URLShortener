@@ -46,4 +46,6 @@ Create skylines database with yourself as the owner
 
 Running the server
 ..................
-``$ pipenv run ./manage.py runserver``
+``$ pipenv shell``
+
+``$ python manage.py run``
