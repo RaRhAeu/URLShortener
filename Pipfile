@@ -10,6 +10,8 @@ flask-script = "*"
 flask-migrate = "*"
 gunicorn = "*"
 psycopg2 = "*"
+marshmallow = "*"
+pybase62 = "*"
 
 [dev-packages]
 pytest = "*"
