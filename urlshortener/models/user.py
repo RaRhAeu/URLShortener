@@ -48,26 +48,26 @@ class User(db.Model):
     def __repr__(self):
         return f"<User: {self.name}>"
 
-    @classmethod
-    def by_email_address(cls, email):
+    @staticmethod
+    def by_email_address(email):
         """
         Return the user object whose email address is ``email``.
         """
-        return cls.query(email_address=email).first()
+        return User.query(email_address=email).first()
 
-    @classmethod
-    def by_credentials(cls, email, password, *args, **kwargs):
+    @staticmethod
+    def by_credentials(email, password, *args, **kwargs):
         """
         Return the user object whose email is ``email``
         if the password is matching
         """
-        user = cls.by_email_address(email)
-        if user and user.validate_password(password):
+        user = User.by_email_address(email)
+        if user and user.verify_password(password):
             return user
 
-    @classmethod
-    def by_recover_key(cls, key):
-        return cls.query(recover_key=key).first()
+    @staticmethod
+    def by_recover_key(key):
+        return User.query(recover_key=key).first()
 
     @hybrid_property
     def name(self):
@@ -75,12 +75,6 @@ class User(db.Model):
             return self.first_name
 
         return f"{self.first_name} {self.last_name}"
-
-    def initials(self):
-        parts = self.name.split()
-        initials = [p[0].upper() for p in parts if len(p) > 2
-                    and '.' not in p]
-        return ''.join(initials)
 
     @hybrid_property
     def password(self):

@@ -74,3 +74,4 @@ TODOS:
  - Implement Celery worker
  - Write tests
  - Containerize app with Docker
+ - Configure CI with Github Actions (Lint, Test + Codecov)

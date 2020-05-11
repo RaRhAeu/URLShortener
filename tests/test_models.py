@@ -60,6 +60,13 @@ def test_user_permissions(db_session):
     assert admin.is_readable(user) is False
 
 
+def test_user_find_by_credentials(db_session):
+    user = data.example_user()
+    db_session.add(user)
+    db_session.commit()
+    assert user is User.by_credentials(email="example@email.com", password="test")
+
+
 def test_url_repr(db_session):
     url = data.example_url()
     db_session.add(url)
