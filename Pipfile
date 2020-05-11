@@ -15,6 +15,7 @@ psycopg2 = "*"
 pytest = "*"
 pytest-cov = "*"
 flake8 = "*"
+faker = "*"
 
 [requires]
 python_version = "3.7"

@@ -24,6 +24,7 @@ class User(db.Model):
     email_address = db.Column(Unicode(255), nullable=False)
     first_name = db.Column(Unicode(255), nullable=False)
     last_name = db.Column(Unicode(255))
+    urls = db.relationship('Url', backref='user')
 
     # Hashed password
     _password = db.Column("password", Unicode(128), nullable=False)
@@ -82,7 +83,7 @@ class User(db.Model):
         return ''.join(initials)
 
     @hybrid_property
-    def password(self, password):
+    def password(self):
         """Return the hashed version of the password"""
         return self._password
 
@@ -94,7 +95,7 @@ class User(db.Model):
         self._password = self._hash_password(password)
 
     @staticmethod
-    def _hash_password(password, salt):
+    def _hash_password(password, salt=None):
         if salt is None:
             salt = os.urandom(60)
 
