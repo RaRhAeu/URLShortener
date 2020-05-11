@@ -1,0 +1,41 @@
+name: urlshortener
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.7.3
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pipenv
+        pipenv install --dev
+    - name: Lint with flake8
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: Test with pytest
+      run: |
+        pytest --cov=./ --cov-report xml
+    - name: Codecov
+      uses: codecov/codecov-action@v1.0.7
+      with:
+       # User defined upload name. Visible in Codecov UI
+        name: url-shortener-cov
+        # Repository upload token - get it from codecov.io. Required only for private repositories
+        token: acb23bb5-6ed7-44b3-84ed-1bc70df6e01f
+        # Path to coverage file to upload
+        file: coverage.xml
+        fail_ci_if_error: true
