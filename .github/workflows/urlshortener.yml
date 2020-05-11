@@ -9,8 +9,18 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:10:8
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
     steps:
     - uses: actions/checkout@v2
+    - name: Postgresql setup
+      run: |
+        psql -U postgres -c 'CREATE DATABASE urlshortener_test;'
     - name: Set up Python 3.7
       uses: actions/setup-python@v1
       with:
