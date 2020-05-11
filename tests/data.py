@@ -11,9 +11,19 @@ def example_user():
     return u1
 
 
+def example_admin():
+    admin = User()
+    admin.first_name = "Example"
+    admin.last_name = "Admin"
+    admin.email_address = "example_admin@email.com"
+    admin.password = "password"
+    admin.admin = True
+    return admin
+
+
 def john():
-    user = User(first_name=u"John", last_name=u"Doe", email_address=u"johnny@doe.com")
-    user.original_password = user.password = u"jane123"
+    user = User(first_name="John", last_name="Doe", email_address=u"johnny@doe.com")
+    user.original_password = user.password = "jane123"
     return user
 
 

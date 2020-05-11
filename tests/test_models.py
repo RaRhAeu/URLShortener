@@ -36,6 +36,30 @@ def test_hash_password():
     assert isinstance(u_hash, str)
 
 
+def test_verify_password():
+    john = data.john()
+    assert john.verify_password("jane123") is True
+    assert john.verify_password("jane12") is False
+
+
+def test_user_permissions(db_session):
+    admin = data.example_admin()
+    user = data.example_user()
+    db_session.add(admin)
+    db_session.add(user)
+    db_session.commit()
+    assert admin.is_manager() is True
+    assert user.is_manager() is False
+    # is user readable by himself? (Yes)
+    assert user.is_readable(user) is True
+    # is user readable by admin? (Yes)
+    assert user.is_readable(admin) is True
+    # is admin readable by admin? (Yes)
+    assert admin.is_readable(admin) is True
+    # is admin readable by user? (No)
+    assert admin.is_readable(user) is False
+
+
 def test_url_repr(db_session):
     url = data.example_url()
     db_session.add(url)

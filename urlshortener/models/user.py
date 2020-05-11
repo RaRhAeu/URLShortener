@@ -111,7 +111,7 @@ class User(db.Model):
 
         return salt_hash.hexdigest() + password_hash.hexdigest()
 
-    def validate_password(self, password):
+    def verify_password(self, password):
         """
         Check password against existing credentials
         :param password: the password that was provided by the user to
@@ -122,7 +122,7 @@ class User(db.Model):
         :rtype: bool
         """
         assert isinstance(password, str)
-
+        # DeMorgan: not (self.password and password) ?
         if not self.password or not password:
             return False
 
@@ -142,12 +142,12 @@ class User(db.Model):
 
     # PERMISSIONS
     def is_readable(self, user):
-        """Does the current user have full read access?"""
+        """Does the current user have full read access"""
         return self.is_writable(user)
 
     def is_writable(self, user):
         return user and (
-            self.id == user.id or user.is_manager()
+            (self.id == user.id) or user.is_manager()
         )
 
 
