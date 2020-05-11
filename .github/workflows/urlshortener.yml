@@ -27,7 +27,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Postgresql setup
       run: |
-        psql -U postgres -c 'CREATE DATABASE urlshortener_test;'
+        psql -h localhost -p 5432 -U postgres -c 'CREATE DATABASE urlshortener_test;'
     - name: Set up Python 3.7
       uses: actions/setup-python@v1
       with:
