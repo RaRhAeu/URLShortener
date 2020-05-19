@@ -29,5 +29,6 @@ class URLShortenerApp(Flask):
 def create_app(config_name, *args, **kwargs):
     app = URLShortenerApp(config_name=config_name)
     app.add_sqlalchemy()
+    app.register_views()
     print(f"APP RUNNING IN {config_name} MODE")
     return app

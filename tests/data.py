@@ -23,11 +23,12 @@ def example_admin():
 
 def john():
     user = User(first_name="John", last_name="Doe", email_address=u"johnny@doe.com")
-    user.original_password = user.password = "jane123"
+    user.password = "jane123"
     return user
 
 
 def example_url():
     url = Url()
     url.long_url = "https://www.google.com/"
+    url.short_url = None
     return url

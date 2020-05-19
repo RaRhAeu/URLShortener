@@ -18,20 +18,22 @@ class Url(db.Model):
         Integer,
         db.ForeignKey("users.id", ondelete="CASCADE"),
         nullable=True,
-        # index=True
+        index=True
     )
     # TODO: implement short_url directly in schema
-    _short_url = db.Column("short_url", Unicode(15), nullable=False)
+    _short_url = db.Column("short_url", Unicode(15))
     long_url = db.Column(Unicode(255), nullable=False)
     created = db.Column(DateTime, default=datetime.utcnow)
     expires_at = db.Column(DateTime, nullable=True)
+    visits = db.Column(Integer, default=0, nullable=False)
 
     def __repr__(self):
-        return f"<Url: {self.id}>"
+        return f"<Url {self.id}: {self.short_url}>"
 
-    def generate_short_url(self, URL_LEN=7):
-        hs = sha256(self.long_url.encode('utf-8').digest())
-        short_url = base62.encodebytes(hs)[:URL_LEN]
+    @staticmethod
+    def generate_short_url(long_url, length=7):
+        hs = sha256(long_url.encode('utf-8')).digest()
+        short_url = base62.encodebytes(hs)[:length]
         return short_url
 
     @hybrid_property
@@ -40,10 +42,10 @@ class Url(db.Model):
 
     @short_url.setter
     def short_url(self, short_url=None):
-        if short_url is not None:
+        if short_url:
             self._short_url = short_url
         else:
-            self._short_url = self.generate_short_url()
+            self._short_url = self.generate_short_url(self.long_url)
 
 
-db.Index("urls_short_url_idx", Url._short_url, unique=True)
+db.Index("urls_short_url_idx", Url.short_url, unique=True)

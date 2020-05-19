@@ -8,8 +8,8 @@ def query(cls, **kwargs):
     return q
 
 
-def get(cls, **kw):
-    return cls.query(**kw).first() or None
+def get(cls, id):
+    return cls.query().get(id)
 
 
 def exists(cls, **kwargs):

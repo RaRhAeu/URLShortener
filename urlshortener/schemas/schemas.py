@@ -1,8 +1,10 @@
 from marshmallow import Schema as _Schema
-from marshmallow import fields, validate
+from marshmallow import fields, validate, post_dump
 
 
 class Schema(_Schema):
+
+
     class Meta(_Schema.Meta):
         ordered = True
         strict = True
@@ -38,7 +40,7 @@ class CurrentUserSchema(UserSchema):
         validate=validate.Length(min=8),
     )
     # TODO: check this
-    currentPassword = fields.String(load_only=True)
+    # currentPassword = fields.String(load_only=True)
 
     recoveryKey = fields.String(
         attribute="recover_key",
@@ -49,4 +51,18 @@ class CurrentUserSchema(UserSchema):
 
 
 class UrlSchema(Schema):
-    pass
+    SKIP_VALUES = set([None])
+
+    @post_dump
+    def remove_skip_values(self, data, *args, **kwargs):
+        return {
+            key: value for key, value in data.items()
+            if value not in self.SKIP_VALUES
+        }
+    id = fields.Integer(dump_only=True)
+    short_url = fields.String()  # TODO: add validation
+    long_url = fields.String()
+    created = fields.DateTime()
+    expires_at = fields.DateTime(required=False)
+    visits = fields.Integer()
+    user_id = fields.Integer()

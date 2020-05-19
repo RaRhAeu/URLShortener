@@ -72,5 +72,6 @@ def test_url_repr(db_session):
     db_session.add(url)
     db_session.commit()
     url_id = url.id
+    short_url = url.short_url
     assert isinstance(repr(url), str)
-    assert repr(url) == f"<Url: {url_id}>"
+    assert repr(url) == f"<Url {url_id}: {short_url}>"
