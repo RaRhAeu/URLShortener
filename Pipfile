@@ -12,6 +12,7 @@ gunicorn = "*"
 psycopg2 = "*"
 marshmallow = "*"
 pybase62 = "*"
+flask-caching = "*"
 
 [dev-packages]
 pytest = "*"

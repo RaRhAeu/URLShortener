@@ -16,9 +16,8 @@ def exists(cls, **kwargs):
     return cls.query(**kwargs).first() is not None
 
 
-db = SQLAlchemy()
-
-# db = SQLAlchemy(session_options=dict(expire_on_commit=False))
+# db = SQLAlchemy()
+db = SQLAlchemy(session_options=dict(expire_on_commit=False))
 db.Model.query = classmethod(query)
 db.Model.get = classmethod(get)
 db.Model.exists = classmethod(exists)

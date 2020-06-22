@@ -1,6 +1,7 @@
 from flask import Flask
 
 from config import config
+from urlshortener.api.cache import cache
 
 
 class URLShortenerApp(Flask):
@@ -14,7 +15,7 @@ class URLShortenerApp(Flask):
         db.init_app(self)
 
     def add_cache(self):
-        pass
+        cache.init_app(self)
 
     def add_celery(self):
         pass
