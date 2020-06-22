@@ -45,4 +45,6 @@ class Url(db.Model):
             self._short_url = self.generate_short_url(self.long_url)
 
 
-db.Index("urls_short_url_idx", Url.short_url, unique=True)
+# this should be hashed index, because we're not interested
+# in BETWEEN like lookups, but only for a specific url
+db.Index("urls_short_url_idx", Url._short_url, unique=True)

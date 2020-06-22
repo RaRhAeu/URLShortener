@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from marshmallow import ValidationError
+from sqlalchemy import desc
 
 from urlshortener.database import db
 from urlshortener.models import Url
@@ -10,13 +11,15 @@ urls_blueprint = Blueprint("urls", "urlshortener", url_prefix="/api")
 
 @urls_blueprint.route("/urls", strict_slashes=False)
 def _list():
-    urls = Url.query().order_by("created")
+    urls = Url.query().order_by(desc("created"))
     return jsonify(urls=UrlSchema().dump(urls, many=True))
 
 
-@urls_blueprint.route("/urls/<url_id>")
+@urls_blueprint.route("/urls/<int:url_id>")
 def read(url_id):
     url = Url.get(url_id)
+    if not url:
+        return jsonify(error="url not found"), 404
     url.visits += 1
     db.session.commit()
     return jsonify(UrlSchema().dump(url))
@@ -41,7 +44,7 @@ def create_url():
     return jsonify(UrlSchema().dump(url))
 
 
-@urls_blueprint.route("/urls/<url_id>", methods=["DELETE"])
+@urls_blueprint.route("/urls/<int:url_id>", methods=["DELETE"])
 def delete(url_id):
     url = Url.get(url_id)
     if url:

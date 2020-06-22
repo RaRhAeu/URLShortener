@@ -13,8 +13,6 @@ URLShortener
   :alt: License
   :target: https://github.com/RaRhAeu/URLShortener/blob/master/LICENSE
 
-.. image:: https://img.shields.io/github/stars/RaRhAeu/URLShortener
-  :alt: Stars
 
 -----------------------------
 Yet another url-shortener API
@@ -76,14 +74,16 @@ Running the server
 
 ``$ python manage.py run``
 
-TODOS:
-......
- - Create CRUD API for managing urls
- - Create CRUD API for managing users
- - Add user authentication and authorization (Flask-JWT + Bcrypt)
- - Implement CORS policy
- - Create caching mechanism
- - Implement Celery worker
- - Write tests
- - Containerize app with Docker
- - Configure CI with Github Actions (Lint, Test + Codecov)
+Todos status:
+.............
+ - Create CRUD API for managing urls [+]
+ - Create CRUD API for managing users [+/-]
+ - Add user authentication and authorization (Flask-JWT + Bcrypt) [-]
+ - Implement CORS policy [+]
+ - Create caching mechanism using Redis [+/-]
+ - Implement Celery worker [-]
+ - Write tests [+/-]
+ - Containerize app with Docker [-]
+ - Configure CI with Github Actions (Lint, Test + Codecov) [+]
+ - Add QR Code generating endpoint [-]
+ - Add logging [-]

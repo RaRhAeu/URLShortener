@@ -18,10 +18,29 @@ class URLShortenerApp(Flask):
         cache.init_app(self)
 
     def add_celery(self):
-        pass
+        from urlshortener.worker.celery import celery
+        celery.init_app(self)
 
     def add_logging_handler(self):
-        pass
+        # TODO: change settings
+        if self.debug:
+            return
+        import logging
+        from logging import Formatter
+        from logging.handlers import RotatingFileHandler
+
+        self.logger.setLevel(logging.INFO)
+        path = self.config.get("LOG_FILE")
+        if path:
+            file_handler = RotatingFileHandler(path, "a", 10000)
+            file_handler.setLevel(logging.INFO)
+
+            file_formatter = Formatter(
+                "%(asctime)s %(levelname)s: %(message) \
+                [in %(pathname)s:%(lineno)d]"
+            )
+            file_handler.setFormatter(file_formatter)
+            self.logger.addHandler(file_handler)
 
     def register_views(self):
         import urlshortener.api.views
@@ -32,5 +51,6 @@ def create_app(config_name, *args, **kwargs):
     app = URLShortenerApp(config_name=config_name)
     app.add_sqlalchemy()
     app.register_views()
+    app.add_cache()
     print(f"APP RUNNING IN {config_name} MODE")
     return app

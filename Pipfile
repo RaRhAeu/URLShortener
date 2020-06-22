@@ -13,6 +13,8 @@ psycopg2 = "*"
 marshmallow = "*"
 pybase62 = "*"
 flask-caching = "*"
+redis = "*"
+celery = "*"
 
 [dev-packages]
 pytest = "*"
