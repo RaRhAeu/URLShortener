@@ -1,10 +1,20 @@
 ============
 URLShortener
 ============
+.. image:: https://github.com/RaRhAeu/URLShortener/workflows/build/badge.svg
+  :alt: Build status
+  :target: https://github.com/RaRhAeu/URLShortener/actions?query=workflow%3Abuild
+
 .. image:: https://codecov.io/gh/RaRhAeu/URLShortener/branch/master/graph/badge.svg
+  :alt: Code coverage
   :target: https://codecov.io/gh/RaRhAeu/URLShortener
 
-.. image:: https://github.com/RaRhAeu/URLShortener/workflows/build/badge.svg
+.. image:: https://img.shields.io/github/license/RaRhAeu/URLShortener
+  :alt: License
+  :target: https://github.com/RaRhAeu/URLShortener/blob/master/LICENSE
+
+.. image:: https://img.shields.io/github/stars/RaRhAeu/URLShortener
+  :alt: Stars
 
 -----------------------------
 Yet another url-shortener API
