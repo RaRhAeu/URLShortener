@@ -4,6 +4,8 @@ URLShortener
 .. image:: https://codecov.io/gh/RaRhAeu/URLShortener/branch/master/graph/badge.svg
   :target: https://codecov.io/gh/RaRhAeu/URLShortener
 
+.. image:: https://github.com/RaRhAeu/URLShortener/workflows/build/badge.svg
+
 -----------------------------
 Yet another url-shortener API
 -----------------------------

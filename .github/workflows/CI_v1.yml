@@ -1,4 +1,4 @@
-name: URLShortener
+name: build
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -38,7 +38,7 @@ jobs:
         pipenv run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       env:
-       DATABASE_URL: 'postgres://postgres:postgres@localhost:${{ job.services.postgres.ports[5432] }}/urlshortener_test'
+       DATABASE_URI: 'postgres://postgres:postgres@localhost:${{ job.services.postgres.ports[5432] }}/urlshortener_test'
       run: |
         pipenv run pytest --cov-report=xml --cov=.
     - name: Upload code coverage to codecov.io
