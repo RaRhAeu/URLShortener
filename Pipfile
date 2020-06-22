@@ -4,10 +4,10 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-flask = "*"
-flask-sqlalchemy = "*"
-flask-script = "*"
-flask-migrate = "*"
+Flask = "*"
+Flask-SQLAlchemy = "*"
+Flask-Script = "*"
+Flask-Migrate = "*"
 gunicorn = "*"
 psycopg2 = "*"
 marshmallow = "*"
@@ -17,9 +17,8 @@ pybase62 = "*"
 pytest = "*"
 pytest-cov = "*"
 flake8 = "*"
-faker = "*"
+Faker = "*"
 bandit = "*"
-black = "*"
 isort = "*"
 
 [requires]
