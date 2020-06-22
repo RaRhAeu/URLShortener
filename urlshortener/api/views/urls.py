@@ -30,14 +30,12 @@ def create_url():
     except ValidationError as e:
         return jsonify(error="validation failed", fields=e.messages), 422
 
-    s_url, l_url = data.get("short_url"), data.get("long_url")
-    short_url = s_url or Url.generate_short_url(l_url)
-    if Url.exists(short_url=short_url):
-        return jsonify(error="duplicate url"), 422
+    if data.get("short_url"):
+        if Url.exists(short_url=data["short_url"]):
+            return jsonify(error="duplicate url"), 422
 
     url = Url(**data)
-    if not data.get("short_url"):
-        url.short_url = None
+    url.short_url = data.get("short_url")
     db.session.add(url)
     db.session.commit()
     return jsonify(UrlSchema().dump(url))

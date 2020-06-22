@@ -1,9 +1,9 @@
-.. image:: https://codecov.io/gh/RaRhAeu/URLShortener/branch/master/graph/badge.svg
-  :target: https://codecov.io/gh/RaRhAeu/URLShortener
-
 ============
 URLShortener
 ============
+.. image:: https://codecov.io/gh/RaRhAeu/URLShortener/branch/master/graph/badge.svg
+  :target: https://codecov.io/gh/RaRhAeu/URLShortener
+
 -----------------------------
 Yet another url-shortener API
 -----------------------------

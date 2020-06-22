@@ -1,8 +1,8 @@
 import pytest
-from urlshortener import create_app
+
+from tests import clean_db, setup_db, teardown_db
+from urlshortener import create_app, database
 from urlshortener.app import URLShortenerApp
-from urlshortener import database
-from tests import setup_db, teardown_db, clean_db
 
 
 @pytest.fixture(scope="session")

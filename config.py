@@ -5,7 +5,6 @@ BASE_PATH = os.path.abspath(os.path.dirname(__file__))
 
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'dev'
-    SQLALCHEMY_COMMIT_ON_TEARDOWN = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     # TODO: configure broker (Redis/Rabbitmq)
     BROKER_URL = None
@@ -23,7 +22,8 @@ class DevelopmentConfig(Config):
 
 class TestingConfig(Config):
     TESTING = True
-    SQLALCHEMY_DATABASE_URI = "postgresql:///urlshortener_test"
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URI") or \
+                                             "postgresql:///urlshortener_test"
 
 
 class ProductionConfig(Config):

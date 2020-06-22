@@ -1,3 +1,3 @@
 # flake8: noqa
-from .user import User
 from .url import Url
+from .user import User

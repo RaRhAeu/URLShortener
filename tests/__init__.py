@@ -1,5 +1,6 @@
 from urlshortener.database import db
 
+
 """
 TODO write tests for:
  +/- models

@@ -1,13 +1,10 @@
 from datetime import datetime
 from hashlib import sha256
-import base62
 
+import base62
 from sqlalchemy.ext.hybrid import hybrid_property
-from sqlalchemy.types import (
-    Integer,
-    Unicode,
-    DateTime,
-)
+from sqlalchemy.types import DateTime, Integer, Unicode
+
 from urlshortener.database import db
 
 

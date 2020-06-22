@@ -1,10 +1,8 @@
 from marshmallow import Schema as _Schema
-from marshmallow import fields, validate, post_dump
+from marshmallow import fields, post_dump, validate
 
 
 class Schema(_Schema):
-
-
     class Meta(_Schema.Meta):
         ordered = True
         strict = True

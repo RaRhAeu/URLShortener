@@ -1,5 +1,6 @@
 from faker import Faker
-from urlshortener.models import User, Url
+
+from urlshortener.models import Url, User
 
 
 def example_user():

@@ -2,14 +2,10 @@ import os
 import struct
 from datetime import datetime
 from hashlib import sha256
-from sqlalchemy.ext.hybrid import hybrid_property, hybrid_method
-from sqlalchemy.types import (
-    Integer,
-    Unicode,
-    DateTime,
-    Boolean,
-)
+
 from sqlalchemy.dialects.postgresql import INET
+from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
+from sqlalchemy.types import Boolean, DateTime, Integer, Unicode
 
 from urlshortener.database import db
 

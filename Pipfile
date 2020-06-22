@@ -18,6 +18,9 @@ pytest = "*"
 pytest-cov = "*"
 flake8 = "*"
 faker = "*"
+bandit = "*"
+black = "*"
+isort = "*"
 
 [requires]
 python_version = "3.7"

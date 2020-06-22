@@ -1,7 +1,7 @@
 import pytest
 
-from urlshortener.models import User
 from tests import data
+from urlshortener.models import User
 
 
 def test_user_create_delete(db_session):

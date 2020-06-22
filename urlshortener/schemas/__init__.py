@@ -1,2 +1,2 @@
 # flake8: noqa
-from .schemas import UserSchema, CurrentUserSchema, UrlSchema
+from .schemas import CurrentUserSchema, UrlSchema, UserSchema

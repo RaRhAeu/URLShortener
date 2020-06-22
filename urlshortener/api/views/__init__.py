@@ -1,8 +1,9 @@
 from flask import Blueprint, jsonify, redirect
-from urlshortener.database import db
-from urlshortener.models import Url
+
 from urlshortener.api.views.urls import urls_blueprint
 from urlshortener.api.views.users import users_blueprint
+from urlshortener.database import db
+from urlshortener.models import Url
 
 shortcuts_blueprint = Blueprint("shortcuts", "urlshortener")
 

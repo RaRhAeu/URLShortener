@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 import os
+
+from flask_migrate import Migrate, MigrateCommand
+from flask_script import Manager, Shell
+
 from urlshortener import create_app
 from urlshortener.database import db
 from urlshortener.models import Url, User
-from flask_script import Manager, Shell
-from flask_migrate import Migrate, MigrateCommand
-
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 manager = Manager(app)

@@ -1,4 +1,6 @@
-from subprocess import CalledProcessError, check_output as run
+from subprocess import CalledProcessError
+from subprocess import check_output as run
+
 FLAKE8_CMD = "flake8"
 FLAKE8_INPUT = ["urlshortener", "tests"]
 
