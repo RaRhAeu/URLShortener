@@ -10,7 +10,7 @@ class URLShortenerApp(Flask):
         self.config.from_object(config[config_name])
         config[config_name].init_app(self)
 
-    def add_sqlalchemy(self):
+    def add_sql_alchemy(self):
         from urlshortener.database import db
         db.init_app(self)
 
@@ -48,8 +48,8 @@ class URLShortenerApp(Flask):
 
 
 def create_app(config_name, *args, **kwargs):
-    app = URLShortenerApp(config_name=config_name)
-    app.add_sqlalchemy()
+    app = URLShortenerApp(config_name=config_name, *args, **kwargs)
+    app.add_sql_alchemy()
     app.register_views()
     app.add_cache()
     print(f"APP RUNNING IN {config_name} MODE")

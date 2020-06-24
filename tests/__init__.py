@@ -11,13 +11,13 @@ TODO write tests for:
 
 
 def setup_db(app):
-    """Method used to build a database"""
+    """Function used to build a database"""
     db.app = app
     db.create_all()
 
 
 def teardown_db():
-    """Method used to destroy database"""
+    """Function used to destroy database"""
     db.session.remove()
     db.drop_all()
     # TODO: check docs on this one
@@ -25,5 +25,6 @@ def teardown_db():
 
 
 def clean_db():
+    """Function for removing all data from database"""
     for table in db.metadata.sorted_tables:
         db.session.execute(table.delete())

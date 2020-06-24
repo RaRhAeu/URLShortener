@@ -8,14 +8,14 @@ shortcuts_blueprint = Blueprint("shortcuts", "urlshortener")
 
 
 @shortcuts_blueprint.route('/<short_url>')
-def resolve_short_url(short_url):
+def redirect_short_url(short_url):
     long_url = cache.get(short_url)
     if not long_url:
         url = Url.query(short_url=short_url).first()
-        long_url = url.long_url
-        cache.set(short_url, url.long_url, timeout=60)
         if not url:
             return jsonify(error="url not found"), 404
+        long_url = url.long_url
+        cache.set(short_url, url.long_url, timeout=60)
     # TODO: move the logic below to a Celery worker
     # url.visits += 1
     # db.session.commit()

@@ -15,6 +15,7 @@ pybase62 = "*"
 flask-caching = "*"
 redis = "*"
 celery = "*"
+segno = "*"
 
 [dev-packages]
 pytest = "*"
