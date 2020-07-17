@@ -141,8 +141,8 @@ class User(db.Model):
         )
 
 
-db.Index(
-    "users_lower_email_address_idx",
-    db.func.lower(User.email_address),
-    unique=True
-)
+# db.Index(
+#    "users_lower_email_address_idx",
+#    db.func.lower(User.email_address),
+#    unique=True
+# )

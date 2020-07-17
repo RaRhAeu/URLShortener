@@ -2,6 +2,7 @@ from flask import Flask
 
 from config import config
 from urlshortener.api.cache import cache
+from urlshortener.api.cors import cors
 
 
 class URLShortenerApp(Flask):
@@ -20,6 +21,9 @@ class URLShortenerApp(Flask):
     def add_celery(self):
         from urlshortener.worker.celery import celery
         celery.init_app(self)
+
+    def add_cors(self):
+        cors.init_app(self)
 
     def add_logging_handler(self):
         # TODO: change settings

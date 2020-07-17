@@ -1,5 +1,4 @@
 import pytest
-
 from tests import clean_db, setup_db, teardown_db
 from urlshortener import create_app, database
 from urlshortener.app import URLShortenerApp
@@ -7,13 +6,13 @@ from urlshortener.app import URLShortenerApp
 
 @pytest.fixture(scope="session")
 def app():
-    """ Global application fixture"""
+    """Global application fixture"""
     yield create_app(config_name="testing")
 
 
 @pytest.fixture(scope="session")
 def db(app):
-    """ Creates clean database schema and drops it on teardown"""
+    """Creates clean database schema and drops it on teardown"""
     assert isinstance(app, URLShortenerApp)
     setup_db(app)
     yield database.db
@@ -28,3 +27,10 @@ def db_session(db, app):
         clean_db()
         yield db.session
         db.session.rollback()
+
+
+@pytest.fixture
+def client(app):
+    """Test client fixture"""
+    with app.test_client() as client:
+        yield client

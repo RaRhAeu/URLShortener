@@ -11,7 +11,7 @@ from urlshortener.utils import generate_qr_code
 urls_blueprint = Blueprint("urls", "urlshortener", url_prefix="/api")
 
 
-@urls_blueprint.route("/urls", strict_slashes=False)
+@urls_blueprint.route("/urls", methods=['GET'], strict_slashes=False)
 def _list():
     urls = Url.query().order_by(desc("created"))
     return jsonify(urls=UrlSchema().dump(urls, many=True))
@@ -22,8 +22,9 @@ def read(url_id):
     url = Url.get(url_id)
     if not url:
         return jsonify(error="object not found"), 404
-    url.visits += 1
-    db.session.commit()
+    # TODO: Move to celery worker
+    # url.visits += 1
+    # db.session.commit()
     return jsonify(UrlSchema().dump(url))
 
 

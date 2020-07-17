@@ -1,10 +1,7 @@
 from flask import request
 
 
-class CORS(object):
-    def __init__(self, app=None):
-        if app:
-            self.init_app(app)
+class CORS:
 
     def init_app(self, app):
         app.after_request(self.add_cors_headers)
